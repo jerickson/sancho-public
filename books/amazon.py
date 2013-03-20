@@ -1,6 +1,16 @@
 
 
 class AmazonClippingsFile():
+    """
+    Example:
+
+    # Iterate through the clippings in an Amazon kindle clippings file.
+
+    for clip in AmazonClippingsFile("Clippings.txt"):
+      print "Processing clip %s (%s)" % (clip.author, clip.added_on)
+
+    """
+
 
     LINES_PER_CLIP = 5
 
