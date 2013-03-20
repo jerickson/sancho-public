@@ -1,0 +1,26 @@
+{% extends "books/base.html" %}
+
+{% block pageheader %}
+    <h3>Add a highlight</h3>
+{% endblock %}
+
+{% block content %}
+<div class="content"> 
+        <p>
+            <form class="form" method="post" action="{% url books.highlight.create %}">
+              <fieldset>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <label for="id_book">Book</label>
+                {{ form.book }}
+                {{ form.book.errors }}
+                {{ form.location }}
+                {{ form.location.errors }}
+                {{ form.text }}
+                {{ form.text.errors }}
+                <input type="submit" value="Add this highlight" class="btn btn-primary"/>
+              </fieldset>
+            </form>
+        </p>
+</content>
+{% endblock %}

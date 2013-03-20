@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block extra_javascript %}
+    <script type="text/javascript"> 
+        $(document).ready(function() {
+            $("#word").change(function(e) {
+                var form = $('#search-form'); 
+                var url = form.attr('action') + this.value;
+                $.ajax({
+                  url: url,
+                  method: 'GET',
+                  success: function(data) {
+                    var json = eval(data);
+                    $('#results').empty();
+                    for (var i = 0; i < json.length; i++) {
+                        var definition = json[i];
+                        $('#results').append('<li>' + definition.text + '</li>');
+                    }
+                    if (json.length == 0)
+                        $('#results').append('<li><em>Not found</em></li>');
+                  },
+                  error: function(data, statusCode) {
+                    alert("ERROR: "+data)
+                  }
+                });
+            });
+            $("#word").focus();
+            $("#word").focus(function() { $(this).select() });
+            $("#word").mouseup(function(e) { e.preventDefault(); });
+        });
+      
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h3>Dictionary</h3>
+    <form id="search-form" action="/book/api/dictionary/" method="post">
+        <label for="word">Search</label>
+        <input id="word" name="word" type="text" class="input-large"/>
+    </form>
+    <ul id="results">
+    </ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% load humanize %}
+
+<div class="row-fluid">
+    <div class="span12">
+        <h4>{{ list.name }}</h4>
+        <table class="table">
+          <tbody>
+          {% for item in list.items.all %}
+              <tr>
+                  <td style="width: 24px;">
+                      {% if item.content_object.google.small_thumbnail %}
+                        <div style="width: 24px; height: 37px;">
+                          <img src="{{ item.content_object.google.small_thumbnail }}" alt="img"/>
+                        </div>
+                      {% endif %}
+                  </td>
+                  <td>
+                      <strong>
+                          <a href="{% url books.detail item.content_object.slug %}">{{ item.content_object.title }}</a>
+                      </strong>
+                  </td>
+                  <td>
+                      <strong>
+                           <strong class="muted">{{ item.content_object.author.last_name }}</strong>
+                      </strong>
+                  </td>
+              </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>

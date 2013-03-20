@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load active %}
+
+{% block nav.h %}
+    class="{% active request 'highlights' %}"
+{% endblock %}
+
+{% block nav.r %}
+    class="{% active request 'lists' %}"
+{% endblock %}
+

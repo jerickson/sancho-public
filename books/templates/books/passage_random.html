@@ -1,0 +1,16 @@
+{% extends "books/base.html" %}
+
+{% block page-title %} Random quote {% endblock %}
+
+{% block quote-random %}
+    <li class="active"><a href="{% url quote.random %}">Random</a></li>
+{% endblock %}
+    
+{% block content %} 
+    {% include "books/passage_detail.html" %}
+    <div class="row-fluid">
+        <div class="span12">
+            <a href="{% url books.highlight.random %}" class="btn btn-primary">Next Highlight</a>
+        </div>
+    </div>
+{% endblock %}

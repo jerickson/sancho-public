@@ -1,0 +1,39 @@
+{% extends "books/base.html" %}
+
+{% load humanize %}
+
+{% block pageheader %}
+    {% if object.google %}
+        <a class="pull-left" href="{{ object.google.info_link }}" style="margin-right: 20px;margin-bottom: 10px;">
+            <img class="media-object" src="{{ object.google.thumbnail }}" alt="{{ object.title }}">
+        </a>
+    {% endif %}
+    <h2 class="page-title">
+        {{ object.title }} 
+        <small class="muted"><strong>by {{object.author }}</strong></small>
+    </h2>
+{% endblock %}
+{% block lead %}
+    {% if object.google %} 
+        {% with object.google as google %}
+            <div class="row-fluid">
+                <p class="lead">
+                    {{ google.description|striptags }}
+                    (<a href="{{ google.info_link }}">more info</a>)
+                </p>
+            </div>
+        {% endwith %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% with object.passage_set.all as passages %}
+        {% if passages.count %}
+            <div id="box-container">
+                {% for passage in object.passage_set.all  %}
+                    {% include "books/passage_detail.html" %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

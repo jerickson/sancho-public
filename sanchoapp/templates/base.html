@@ -1,0 +1,80 @@
+{% load active %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jerickson.me{% block title %} {% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="/static/masonry/css/style.css" media="screen,projection,print">
+    <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.css" media="screen,projection,print">
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css" media="screen,projection,print">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,300italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+            <div class="span12">
+            <a class="brand" href="{% url books.highlight.list %}">jerickson.me</a>
+            <ul class="nav nav-pills pull-right">
+                <li class="{% active request 'highlights' %}"><a href="{% url books.highlight.list %}">Highlights</a></li>
+                <li class="{% active request 'lists' %}"><a href="{% url books.list %}">Reading</a></li>
+                    <li class="{% active request 'moby-dick' %}"><a href="book/moby-dick/text">MobyDick</a></li>
+                {% if request.user.is_authenticated %}
+                    <li class="{% active request 'frog' %}"><a href="{% url frog.time %}">Time</a></li>
+                    <li class="{% active request 'todo' %}"><a href="{% url todo.list %}">Todo</a></li>
+                    <li><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
+                {% else %}
+                    <li class="{% active request 'login' %}"><a href="{% url django.contrib.auth.views.login %}">Login</a></li>
+                {% endif %}
+            </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span12" >
+                <div class="page-title">
+                    {% block pageheader %}
+                    {% endblock %}
+                    {% block lead %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="span12">
+                <div id="container">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/application.js"></script>
+    <script src="/static/masonry/masonry.min.js"></script>
+
+        <script type="text/javascript"> 
+            $(document).ready(function() {
+                $(".add-comment").click(function() {
+                    var comment = this.id;
+                    var comment_form_id = '#' + comment + '-form';
+                    $(comment_form_id).show("fast");
+                    $(this).hide();
+                    $(comment_form_id + ' :input:enabled:visible:first').focus();
+                    return false;
+                });
+            });
+            window.onload = function() {
+      var wall = new Masonry( document.getElementById('box-container'), {
+      });
+    };
+       </script> 
+       {% block extra_javascript %}
+       {% endblock %}
+</body>
+</html>
+

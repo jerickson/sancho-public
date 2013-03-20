@@ -1,0 +1,36 @@
+{% load comments %}
+
+{% if passage %}
+    {% get_comment_list for passage as comment_list %}
+    {% if comment_list %}
+        <div class="well">
+        {% for comment in comment_list %}
+            <div style="padding-bottom: 0px;">
+                <strong class="muted">
+                    <span style="color:green;">{{ comment.user.username }}</span>
+                </strong>
+                <span class="comment">
+                    - {{ comment.comment }}
+                </span>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+        <a id="add-comment-{{ passage.id }}" class="add-comment"><strong class="muted">add comment</strong></a>
+        <div id="add-comment-{{ passage.id }}-form" class="comment-form welly">
+            {% get_comment_form for passage as form %}
+            <form action="{% comment_form_target %}" method="POST">
+                {% csrf_token %}
+                {{ form.comment }}
+                {{ form.honeypot }}
+                {{ form.content_type }}
+                {{ form.object_pk }}
+                {{ form.timestamp }}
+                {{ form.security_hash }}
+                <input type="hidden" name="next" value="{{ request.path }}" />
+                <input type="submit" value="Add comment" id="id_submit" class="btn" />
+            </form>
+        </div>
+    {% endif %}
+{% endif %}

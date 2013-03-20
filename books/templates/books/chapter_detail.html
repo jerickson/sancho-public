@@ -1,0 +1,48 @@
+{% extends "books/base.html" %}
+
+{% block extra_javascript %}
+    <script>
+
+      $(document).ready(function() {  
+        $('p').mouseup( function () {
+          var selection = getSelectedText();
+          var text = String(selection);
+          var parent = selection.anchorNode.parentNode;
+          Hermes.define(text, $(parent));
+        });
+       });
+
+      function getSelectedText() {
+          var selection;
+          if (window.getSelection) {
+              selection = window.getSelection();
+          } else if (document.selection) {
+              selection = document.selection.createRange();
+          }
+          return selection;
+      }
+
+    </script>
+
+{% endblock %}
+
+{% block pageheader %}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="span8">
+            <div class="book">
+                <ul class="breadcrumb">
+                    <li><a href="{% url books.table_of_contents 'moby-dick'%}">Moby Dick</a> <span class="divider">/</span></li>
+                    <li class="active">{{ chapter.name }}</li>
+                </ul>
+                {% for paragraph in chapter.paragraph_set.all %}
+                    <p id="paragraph-{{ paragraph.id }}">{{ paragraph.text }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div span="span4">
+            
+        </div>
+    </div>
+{% endblock %}

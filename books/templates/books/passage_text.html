@@ -1,0 +1,29 @@
+{% load humanize %}
+{% load highlight %}
+
+<div class="quote">
+    <div class="text">
+        {% if query %}
+            "{{ passage.text|highlight:query }}"
+        {% else %}
+            "{{ passage.text }}"
+        {% endif %}
+    </div>
+    <div class="title" >
+        <strong>
+            <a href="{% url books.detail passage.book.slug %}">
+                - {{ passage.book }} by {{ passage.book.author}}
+            </a>
+        </strong>
+    </div>
+    {% include "books/passage_comment.html" %}
+    {% if request.user.is_authenticated %}
+        <form action="{% url books.highlight.like passage.id %}" method="post" class="pull-right" style="margin-bottom: 0;">
+            {% csrf_token %}
+            <button class="btn btn-mini">
+                <i class="icon-thumbs-up"></i>
+                {{ passage.likes }}
+            </button>
+        </form>
+    {% endif %}
+</div>

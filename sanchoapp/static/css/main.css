@@ -1,0 +1,265 @@
+body 
+{
+    -webkit-font-smoothing: antialiased;
+    font-family: "Ubuntu", 'Helvetica Neue', Verdana, Arial, sans-serif;
+}
+
+.header
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header .brand 
+{
+    font-weight: bold;
+    display: block;
+    float: left;
+    font-size: 20px;
+    margin-left: -20px;
+    padding: 7px 20px;
+}
+
+.form-search
+{
+    margin-bottom: 0;
+}
+
+.navbar-fixed-top
+{
+    margin-bottom: 0;
+}
+
+ul.nav li a
+{
+    font-weight: normal;
+}
+
+@media (max-width: 979px) 
+{
+    body 
+    {
+        padding-top: 0px;
+    }
+}
+
+.main
+{
+    margin-left: 20px;
+}
+
+.page-title
+{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.page-title h3
+{
+    line-height: 1em;
+}
+
+.page-title h2
+{
+    margin: 0;
+}
+
+.page-title form
+{
+    margin-bottom: 0;
+}
+
+.lead { color: black;}
+
+.nav
+{
+    margin-bottom: 0px;
+}
+
+
+.container-fluid
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#box-container
+{
+    background: #d8d8d8;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.well
+{
+    padding: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.quote .text 
+{
+    font-family: verdana, courier, georgia, serif;
+    font-size: 12px;
+    line-height: 1.75em;
+    padding: 5px;
+    color: black;
+}
+
+.quote .title
+{
+    padding: 5px;
+}
+
+.comment
+{
+    margin-bottom: 0;
+    font-size: 12px;
+    color: black;
+    font-family: verdana, courier, georgia;
+}
+
+.quote .text .highlight
+{
+    background-color: yellow;
+}
+
+#id_honeypot 
+{
+    display: none;
+}
+
+.comment-form
+{
+    display: none;
+    margin-top: 10px;
+}
+
+.comment-form form
+{
+    margin-bottom: 0;
+}
+.comment-form textarea
+{
+    width: 98%;
+    font-family: verdana, courier, georgia;
+    font-size: 12px;
+    color: #222;
+}
+
+.welly
+{
+  background: #e8e8e8;
+  color: #333;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-bottom: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.welly input[type=text]
+{
+    width: 92%;
+    margin-bottom: 0;
+}
+
+.table
+{
+    margin-bottom: 0;
+}
+
+.table td
+{
+    vertical-align: middle;
+}
+
+select
+{
+    width: 100%;
+}
+
+input,textarea
+{
+    width: 98%;
+}
+
+.box
+{
+    background: white;
+    padding: 10px;
+}
+
+#container
+{
+    background: transparent;
+    padding: 0;
+}
+
+.content
+{
+    padding: 0 20px 20px 20px;
+}
+
+td input[type="text"], select
+{
+    margin-bottom: 0;
+}
+
+#id_date_year.input-mini, #id_due_date_year.input-mini
+{
+    display: none;
+}
+
+table, input, label
+{
+    font-family: 'Helvetica Neue', Verdana, Arial, sans-serif;
+    font-size: 12px;
+}
+
+table td form
+{
+    margin-bottom: 0;
+}
+
+.wrapword
+{
+    white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    word-break: break-all;
+    white-space: normal;
+}
+
+.btn.add-highlight
+{
+    margin-right: 20px;
+}
+
+.col3 { width: 435px; }
+
+.book p 
+{ 
+    font-size: 16px;
+    line-height: 23px;
+    font-family: georgia, serif, verdana, arial;
+    color: #333;
+}
+
+.popover
+{
+    width: 307px;
+}
+
+.popover p
+{
+    font-family: verdana, arial, sans-serif;
+    font-size: .95em;
+}

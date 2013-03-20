@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block pageheader %}
+    <h3>Time Tracking</h3>
+{% endblock %}
+
+{% block content %}
+    <form action="/frog/time/create" method="post">
+    {% csrf_token %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Person</th>
+                <th>Hours</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        <thead>
+        <tbody>
+            <tr>
+                <td class="span2">{{form.date}}</td>
+                <td class="span2">{{form.person}} {{form.person_id}}</td>
+                <td class="span1">{{form.hours}}</td>
+                <td class="span6">{{form.description}}</td>
+                <td class="span1"><input class="btn btn-primary" type="submit" value="Log it"/></td>
+            </tr>
+            {% for timeentry in object_list %}
+                <tr>
+                    <td>{{timeentry.date}}</td>
+                    <td>{{timeentry.person}}</td>
+                    <td><strong>{{timeentry.hours}}</strong></td>
+                    <td>{{timeentry.description}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </form>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %} - todo {% endblock %}
+
+{% block extra_javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.completed-checkbox').change(function(){
+                $(this).closest("form").submit();
+            });
+        });
+    </script> 
+{% endblock %}
+
+{% block pageheader %}
+    <h3>Todo</h3>
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>All Tasks</th>
+                <th>Due Date</th>
+                <th></th>
+            </tr>
+        <thead>
+        <tbody>
+            {% for todo in object_list %}
+                <tr>
+                    <td>
+                        <form action="{% url todo.complete todo.id %}" method="post" class="form-inline">
+                            {% csrf_token %}
+                            <input id="id_pk" name="pk" type="hidden" value="{{todo.pk}}" />
+                            <input type="checkbox" class="completed-checkbox" name="completed" id="id_completed" {{ todo.completed|yesno:"checked=\"on\",," }} />
+                            {{ todo.description }}
+                        </form>
+                    </td>
+                    <td>{{ todo.due_date|naturalday }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <form action="/todo/create" method="post">
+                {% csrf_token %}
+                <td class="span8">{{form.description}}</td>
+                <td class="span3">{{form.due_date}}</td>
+                <td class="span1"><input class="btn btn-primary" type="submit" value="Log it"/></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

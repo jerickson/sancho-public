@@ -1,0 +1,2 @@
+- Add concept of Related Passages.  There are many passages that can be related manually, or through AI.
+

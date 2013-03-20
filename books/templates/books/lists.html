@@ -1,0 +1,23 @@
+{% extends "books/base.html" %}
+
+{% load humanize %}
+
+{% block pageheader %}
+    <h3>Reading Lists</h3>
+{% endblock %}
+{% block content %}
+    <div id="box-container">
+        <div class="box photo col3 masonry-brick">
+            {% include "books/book_table.html" with list=now_reading %} 
+        </div>
+        <div class="box photo col3">
+            {% include "books/book_table.html" with list=to_read %} 
+        </div>
+        <div class="box photo col3">
+            {% include "books/book_table.html" with list=have_read %} 
+        </div>
+        <div class="box photo col3">
+            {% include "books/book_table.html" with list=favorites %} 
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "books/base.html" %}
+
+{% block pageheader %}
+    <h3>Moby Dick by Herman Melville</h3>
+{% endblock %}
+{% block content %}
+    <ul>
+        {% for chapter in object_list %}
+            <li><a href="{{chapter.get_absolute_url}}">{{ chapter.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
